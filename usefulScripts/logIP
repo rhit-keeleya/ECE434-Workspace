@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# logIP.sh <- grab current IP address on wlan0 and logs to a remote file using rclone
+# Once you get rclone set up and this script is tested, throw it in /etc/networking/if-up.d/
+# Will run every time the network connects.
+# Author: keeleya
+
+# get IP address
+IP=`ifconfig wlan0 | awk '/inet /' | awk '{print $2}'`
+LOG=~debian/G-Drive/IPs.txt
+
+echo "Logging "$IP"..."
+
+if [ -n $IP ]
+then
+	#Have an IP
+	OLDIP=`tail -1 $LOG`
+	if [ "$IP" != "$OLDIP" ]
+	then
+		#Have a /new/ IP, need to run as debian for rclone config to work
+		runuser -l debian -c 'echo "$IP" >> $LOG'
+		runuser -l debian -c 'rclone copy ~/G-Drive G-Drive:'
+	fi
+fi
