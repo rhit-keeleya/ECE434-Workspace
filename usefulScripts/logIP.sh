@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # logIP.sh <- grab current IP address on wlan0 and logs to a remote file using rclone
-# Once you get rclone set up and this script is tested, throw it in /etc/networking/if-up.d/
+# Once you get rclone set up and this script is tested, remove the extension and throw it in /etc/network/if-up.d/
 # Will run every time the network connects.
 # Author: keeleya
 
@@ -18,7 +18,7 @@ then
 	if [ "$IP" != "$OLDIP" ]
 	then
 		#Have a /new/ IP, need to run as debian for rclone config to work
-		runuser -l debian -c 'echo "$IP" >> $LOG'
-		runuser -l debian -c 'rclone copy ~/G-Drive G-Drive:'
+		runuser -l debian -c 'echo '$IP' >> '$LOG''
+		runuser -l debian -c 'rclone copy ~debian/G-Drive  G-Drive:'
 	fi
 fi
