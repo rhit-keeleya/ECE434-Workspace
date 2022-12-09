@@ -20,11 +20,17 @@ Questions:
 6. Try different values for the sleep time (2nd argument). What's the shortest period you can get? Make a table of the fastest values you try and the corresponding period and processor usage. Try using markdown tables: https://www.markdownguide.org/extended-syntax/#tables
 
 | Sleep Time (ms) | Period (ms) |
-| -----------|--|	
-7. How stable is the period?
+|-|-|
+|100|250|
+|10|70|
+|1|53|
+|0.1|51|
 
+9. How stable is the period?
+
+	+/-1ms
 8. Try launching something like vi. How stable is the period?
-
+	
 9. Try cleaning up togglegpio.sh and removing unneeded lines. Does it impact the period?
 
 10. Togglegpio.sh uses bash (first line in file). Try using sh. Is the period shorter?
