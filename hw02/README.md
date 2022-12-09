@@ -2,6 +2,7 @@
 
 ### togglegpio.sh
 Questions:
+
 1. What's the min and max voltage?
 
 	Min = -45mV, Max = 3.306mV
@@ -30,9 +31,33 @@ Questions:
 
 	+/-1ms
 8. Try launching something like vi. How stable is the period?
-	
+
+	+/-4ms	
 9. Try cleaning up togglegpio.sh and removing unneeded lines. Does it impact the period?
 
+	Yes, dropped the period down from ~50ms to ~23ms.
 10. Togglegpio.sh uses bash (first line in file). Try using sh. Is the period shorter?
 
+	Yes, dropped the period down from ~23ms to ~16ms.
 11. What's the shortest period you can get?
+
+	~16ms.
+
+### togglegpio.py
+
+Questions:
+
+1. What period and frequency is it?
+	Period = 202ms, Frequency = 4.9Hz
+2. Run htop and see how much processor you are using.
+	CPU usage is about 5%.
+3. Present the shell script and Python script results in a table for easy comparison.
+
+| Sleep Time (ms) | Script Period (ms) | Python Period|
+|-|-|-|
+|100|250|202|
+|10|70|22.4|
+|1|53|4.3|
+|0.1|51|1.3|
+|0.01|-|1.2|
+
