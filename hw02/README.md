@@ -18,7 +18,9 @@ Questions:
 
 	Around 25% CPU usage.
 6. Try different values for the sleep time (2nd argument). What's the shortest period you can get? Make a table of the fastest values you try and the corresponding period and processor usage. Try using markdown tables: https://www.markdownguide.org/extended-syntax/#tables
-	
+
+| Sleep Time (ms) | Period (ms) |
+| -----------|--|	
 7. How stable is the period?
 
 8. Try launching something like vi. How stable is the period?
