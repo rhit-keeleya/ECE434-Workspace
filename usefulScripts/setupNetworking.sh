@@ -3,7 +3,7 @@
 # setupNetworking.sh	12/10/2022	keeleya
 # Configures a number of quality-of-life and security settings. Sets hostnameto BeagleBone2751,
 # updates ssh port to 2022, sets up IPtables to reject any connections to port 3000 except from
-# localhost (use portforwarding!), and enables the IDE server hosted on port 3000.
+# localhost (use portforwarding!), enables the IDE server hosted on port 3000, and adds fail2ban.
 
 # Update Hostname
 sudo hostnamectl set-hostname BeagleBone2751
@@ -27,3 +27,9 @@ echo Setup iptables to only allow connections to port 3000 that are forwarded th
 # Enable IDE
 sudo systemctl enable bb-code-server.service
 echo Enabled the IDE hosted on port 3000...
+
+# Setup fail2ban
+sudo apt-get -y install fail2ban
+sudo systemctl enable fail2ban
+
+echo Enabled fail2ban...
