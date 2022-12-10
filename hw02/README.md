@@ -61,3 +61,22 @@ Questions:
 |0.1|51|1.3|
 |0.01|-|1.2|
 
+### togglegpio.c
+Note: Use "gcc togglegpio.c -o togglegpio" to compile the program.
+
+Questions:
+
+1. What period and frequency is it?
+	Period = 200.7ms, Frequency = 4.98Hz
+2. Run htop and see how much processor you are using.
+	CPU usage is about 5%.
+3. Present the shell script, Python script, and C script results in a table for easy comparison.
+
+| Sleep Time (ms) | Script Period (ms) | Python Period| C Period|
+|-|-|-|-|
+|100|250|202|200|
+|10|70|22.4|20.8|
+|1|53|4.3|2.6|
+|0.1|51|1.3|0.4|
+|0.01|-|1.2|0.2|
+
