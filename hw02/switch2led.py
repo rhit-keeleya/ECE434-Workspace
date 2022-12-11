@@ -4,9 +4,9 @@ import gpiod
 import time
 import signal
 
-ledPins = [30,60,31,50]
+ledPins = [66,67,69,68]
 ledLines = []
-switchPins = [48,3,5,4]
+switchPins = [23,26,27,22]
 switchLines = []
 chips = []
 
@@ -32,11 +32,11 @@ for pin in switchPins:
     lineNum = pin%32
     chip = gpiod.Chip(chipStr)
     line = chip.get_line(lineNum)
-    line.request(consumer="Blink", type=gpiod.LINE_REQ_DIR_IN, flags=gpiod.LINE_REQ_FLAG_BIAS_PULL_UP)
+    line.request(consumer="Blink", type=gpiod.LINE_REQ_DIR_IN)#, flags=gpiod.LINE_REQ_FLAG_BIAS_PULL_DOWN)
     switchLines.append(line)
     chips.append(chip)
 
 while True:
     for i in range(len(ledPins)):
-        ledLines[i].set_value(not switchLines[i].get_value())
+        ledLines[i].set_value(switchLines[i].get_value())
     time.sleep(0.05)
