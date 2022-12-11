@@ -84,6 +84,17 @@ Questions:
 |0.1|51|1.3|0.4|
 |0.01|-|1.2|0.2|
 
+### gpiod
+
+| Sleep Time (ms) | Script Period (ms) | Python Period| C Period| toggle1.py (gpiod) | toggle1.c (gpiod) | toggle2.py (gpiod) | toggle2.c (gpiod) |
+|-|-|-|-|-|-|-|-|
+|100|250|202|200|201|200.5|201|200.5|
+|10|70|22.4|20.8|20.9|20.7|20.9|20.6|
+|1|53|4.3|2.6|2.9|2.6|2.9|2.6|
+|0.1|51|1.3|0.4|0.4|0.4|0.45|0.4|
+|0.01|-|1.2|0.2|0.2|0.2|0.25|0.21|
+|0|-|-|-|0.018|0.004|0.018|0.003|
+
 ### getsetEvent.py
 
 Run "./getsetEvent.py". Like before, push any button and the corresponding LED will light.
