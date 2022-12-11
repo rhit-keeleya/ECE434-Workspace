@@ -1,5 +1,9 @@
 # Homework 2
 
+### switch2led.py
+
+Run "./switch2led.py". Pressing any of the push buttons will light the corresponding LED.
+
 ### togglegpio.sh
 Questions:
 
@@ -80,3 +84,10 @@ Questions:
 |0.1|51|1.3|0.4|
 |0.01|-|1.2|0.2|
 
+### getsetEvent.py
+
+Run "./getsetEvent.py". Like before, push any button and the corresponding LED will light.
+
+### Etch-a-sketch-buttons.py
+
+Run the program w/ "./etch-a-sketch-buttons.py" and follow the instructions on screen!
