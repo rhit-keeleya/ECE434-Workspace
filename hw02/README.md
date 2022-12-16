@@ -102,3 +102,22 @@ Run "./getsetEvent.py". Like before, push any button and the corresponding LED w
 ### Etch-a-sketch-buttons.py
 
 Run the program w/ "./etch-a-sketch-buttons.py" and follow the instructions on screen!
+
+# hw02 grading
+
+| Points      | Description |
+| ----------- | ----------- |
+|  2/2 | Buttons and LEDs 
+|  8/8 | Etch-a-Sketch works
+|      | Measuring a gpio pin on an Oscilloscope 
+|  2/2 | Questions answered
+|  4/4 | Table complete
+|  2/2 | gpiod
+|      | Security
+|  0/1 | ssh port 
+|  0/1 | fail2ban
+| 19/20   | **Total**
+
+ssh port change and fail2ban are missing.
+
+Nicelyy done tables.  +1
