@@ -25,7 +25,7 @@ tempReg = 0
 configReg = 1
 TlReg = 2
 ThReg = 3
-eventTemp = 70	# temp in degrees F
+eventTemp = 74	# temp in degrees F
 
 def setupTMP():
 	global eventTemp
@@ -121,6 +121,10 @@ def draw():
 def map():
 	# maps the x,y coordinates to the data variable
 	global data
+	# wipe current position
+	data[xCor*2+1] = (~2**yCor & data[xCor*2+1])
+	data[xCor*2] = (~2**yCor & data[xCor*2])
+	# write new data to current position
 	data[xCor*2+color%2] = (2**yCor|data[xCor*2+color%2])
 	if(color==2):
 		data[xCor*2+1] = (2**yCor|data[xCor*2+1])
