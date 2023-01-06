@@ -25,7 +25,7 @@ tempReg = 0
 configReg = 1
 TlReg = 2
 ThReg = 3
-eventTemp = 74	# temp in degrees F
+eventTemp = 78	# temp in degrees F
 
 def setupTMP():
 	global eventTemp
@@ -83,19 +83,19 @@ def getEncoders():
 	global yCor
 	global xCount
 	global yCount
-	xFile = open('/dev/bone/counter/1/count0/count',"r")
-	x = int(int(xFile.read())/4) # normalize counts
-	xFile.close()
-	yFile = open("/dev/bone/counter/2/count0/count","r")
-	y = int(int(yFile.read())/4)
+	yFile = open('/dev/bone/counter/1/count0/count',"r")
+	y = int(int(yFile.read())/4) # normalize counts
 	yFile.close()
+	xFile = open("/dev/bone/counter/2/count0/count","r")
+	x = int(int(xFile.read())/4)
+	xFile.close()
 
 	# figure out if count has increased or decreased since last reading
-	if(((xCount + 512 - x) % 1024 - 512)>0):
+	if(((xCount + 512 - x) % 1024 - 512)<0):
 		xCor=min(xCor+1,size-1)
 		xCount = x
 		return True
-	if(((xCount + 512 - x) % 1024 - 512)<0):
+	if(((xCount + 512 - x) % 1024 - 512)>0):
 		xCor=max(0,xCor-1)
 		xCount = x
 		return True
@@ -142,7 +142,8 @@ def blink():
 	# turn it back on
 	map()
 	draw()
-	
+	time.sleep(0.02)
+
 def erase():
 	global data
 	data = [0x00]*16 # reset data
