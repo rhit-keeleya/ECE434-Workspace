@@ -12,3 +12,6 @@ Run with "sudo ./switch2LEDs".
 Toggle GPIO_60 (P9_12) as fast as possible by running "sudo ./gpiotoggle".
 
 I saw an average period of 172us when using usleep(1), and average period of 360ns without usleep. For comparison, the fastest c script with gpiod had a period of about 3-4 us for me in hw02.
+
+## temp.sh
+Fetch the temperature from a TMP101 sensor on addr 0x48 by running "./temp.sh".
