@@ -14,7 +14,8 @@ Toggle GPIO_60 (P9_12) as fast as possible by running "sudo ./gpiotoggle".
 I saw an average period of 172us when using usleep(1), and average period of 360ns without usleep. For comparison, the fastest c script with gpiod had a period of about 3-4 us for me in hw02.
 
 # I2C via Kernel Driver
-Fetch the temperature from a TMP101 sensor on addr 0x48 by running "./temp.sh".
+Setup a TMP101 sensor on I2C bus 2, address 0x48 by running "./tempSetup.sh" as root.
+Fetch the temperature by running "./temp.sh".
 
 # Online Etch-a-sketch
 Run with "./online-etch-a-sketch" and go to port 8081. Optionally, if an 8x8 LED matrix is connected, it will also show the etch-a-sketch on the matrix as well as the webserver.
