@@ -19,3 +19,18 @@ Fetch the temperature by running "./temp.sh".
 
 # Online Etch-a-sketch
 Run with "./online-etch-a-sketch" and go to port 8081. Optionally, if an 8x8 LED matrix is connected, it will also show the etch-a-sketch on the matrix as well as the webserver.
+
+# hw04 grading
+
+| Points      | Description | |
+| ----------- | ----------- | - |
+|  2/2 | Memory map | *Nice pdf*
+|  4/4 | mmap()
+|  4/4 | i2c via Kernel
+|  5/5 | Etch-a-Sketch via flask
+|  5/5 | LCD display
+|      | Extras
+| 20/20 | **Total**
+*Well done*
+*My comments are in italics. --may*
+
