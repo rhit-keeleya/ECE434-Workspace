@@ -48,18 +48,22 @@
 # -----------------------
 # ------ includes -------
 # -----------------------
-
+-include ./path.mak
 
 
 # --------------------------------
 # ------ user-defined vars -------
 # --------------------------------
-
+CC := $(LINUXarm_GCC)
+CFLAGS := -g
+LINKER_FLAGS := -lstdc++
 
 
 # -----------------------
 # ------ make all -------
 # -----------------------
+.PHONY : all
+all : app.arm
 
 # The "all" rule commonly specifies all executable targets to
 # be built. Note, the user has full control over what the "all"
@@ -74,20 +78,23 @@
 # -----------------------------------
 # ------ executable rule (.x) -------
 # -----------------------------------
-
-
-
+app.arm : app.o
+	$(CC) $(CFLAGS) $(LINKER_FLAGS) $< -o $@
+	@echo; echo $@ successfully created; echo
 
 # ---------------------------------------------------
 # ------ intermeditate object files rule (.o) -------
 # ---------------------------------------------------
-
-
-
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # ----------------------
 # ----- clean all ------
 # ----------------------
+.PHONY : clean
+clean : 
+	rm -rf app.arm
+	rm -rf app.o
 
 # The "clean" rule should remove all files created by
 # the makefile (e.g. the executables and intermediate
@@ -101,7 +108,9 @@
 #
 # -----     example only         ------
 # -------------------------------------
-
+.PHONY : test
+test :
+	@echo CC = $(CC)
 # We use test to print out the user-defined variables to
 # make sure they are set properly - this helps with 
 # debugging makefile errors.
