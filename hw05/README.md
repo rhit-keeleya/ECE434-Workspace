@@ -13,3 +13,5 @@ It's worth noting that this kernel version still doesn't support RTL8188FT wifi 
 Skipped per the note in the hw instructions
 
 # Kernel Modules
+Practiced with Derek Molloy's example modules, then modified gpio_test to support multiple buttons/LEDs. It expects LEDs on P9_27 and P9_23, and buttons connected to ground on P9_12 and P8_07. Insert the module with "sudo insmod gpio_test.ko". The source code can be found in gpio_test.c
+
