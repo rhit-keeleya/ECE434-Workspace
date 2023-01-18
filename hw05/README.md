@@ -23,3 +23,19 @@ Also modified the etch-a-sketch program to be controlled via the accelerometer. 
 
 # led.ko
 Modified the led module to blink two LEDs (the gpio pins used are user configurable w/ module parameters). The second LED will blink at 1/2 the rate of the first. Can be inserted with "sudo insmod led.ko" and removed with "sudo rmmod led" - source code is in led.c
+
+# hw05 grading
+
+| Points      | Description |
+| ----------- | ----------- |
+|  0/0 | Project 
+|  2/2 | Makefile
+|  6/6 | Kernel Source
+|  4/4 | Etch-a-Sketch
+|  8/8 | Kernel Modules: hello, ebbchar, gpio_test, led
+|  4/4 | Extras - Blink at different rates
+| 24/20 | **Total**
+
+*My comments are in italics. --may*
+
+*Looks good*
