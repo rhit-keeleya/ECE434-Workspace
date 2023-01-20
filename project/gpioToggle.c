@@ -11,6 +11,7 @@
 #include <fcntl.h> 
 #include <signal.h>    // Defines signal-handling functions (i.e. trap Ctrl-C)
  #include <unistd.h>
+ #include <time.h>
 #include "beaglebone_gpio.h"
 
 /****************************************************************
@@ -29,14 +30,21 @@ void signal_handler(int sig)
 	keepgoing = 0;
 }
 
+// function prototype
+int getResponse(struct timespec* receive, struct timespec* send, volatile unsigned int* gpio_datain_addr);
+
 int main(int argc, char *argv[]) {
     volatile void *gpio_addr;
     volatile unsigned int *gpio_oe_addr;
     volatile unsigned int *gpio_setdataout_addr;
     volatile unsigned int *gpio_cleardataout_addr;
+    volatile unsigned int *gpio_datain_addr;
     unsigned int reg;
+    struct timespec send;
+    struct timespec receive;
 
-    // want to use P9_13 or GPIO0_31
+    // want to toggle P9_13 or GPIO0_31
+    // want to read P9_11 or GPIO0_30
     
     // Set the signal callback for Ctrl-C
 	signal(SIGINT, signal_handler);
@@ -51,6 +59,7 @@ int main(int argc, char *argv[]) {
     gpio_oe_addr           = gpio_addr + GPIO_OE;
     gpio_setdataout_addr   = gpio_addr + GPIO_SETDATAOUT;
     gpio_cleardataout_addr = gpio_addr + GPIO_CLEARDATAOUT;
+    gpio_datain_addr   = gpio_addr + GPIO_DATAIN;
 
     if(gpio_addr == MAP_FAILED) {
         printf("Unable to map GPIO\nMay require sudo to memory map...\n");
@@ -61,25 +70,51 @@ int main(int argc, char *argv[]) {
     printf("GPIO SETDATAOUTADDR mapped to %p\n", gpio_setdataout_addr);
     printf("GPIO CLEARDATAOUT mapped to %p\n", gpio_cleardataout_addr);
 
-    // Set GPIO0_31 to output
+    // Set GPIO0_31 to output and GPIO0_30 to input
     reg = *gpio_oe_addr;
     printf("GPIO0 configuration: %X\n", reg);
-    reg &= ~GPIO_31;       // Set GPIO0_31 bit to 0
+    reg &= ~GPIO_31;        // Set GPIO0_31 bit to 0 for output
+    reg |= GPIO_30;         // Set GPIO0_30 bit to 1 for input
     *gpio_oe_addr = reg;
     printf("GPIO0 configuration: %X\n", reg);
 
     // printf("Start blinking LED USR3\n");
-    printf("Start toggling GPIO0_31\n");
+    printf("Start toggling GPIO0_31 (P9_13)\n");
     while(keepgoing) {
-        // printf("ON\n");
         *gpio_setdataout_addr = GPIO_31;
+        clock_gettime(CLOCK_MONOTONIC, &send);
         usleep(15);
-        // printf("OFF\n");
         *gpio_cleardataout_addr = GPIO_31;
-        usleep(60000);
+
+        if(getResponse(&receive,&send, gpio_datain_addr)==0) {
+            // no response received for over a second
+            printf("Uh-oh, timed out while waiting for receive signal!\n");
+        } else {
+            // response received
+            long delta = receive.tv_nsec - send.tv_nsec;
+            printf("Time delta between send and receive is %ld usec\n",delta/1000);
+            usleep(600000);
+        }
     }
 
     munmap((void *)gpio_addr, GPIO0_SIZE);
     close(fd);
+    return 0;
+}
+
+int getResponse(struct timespec* receive, struct timespec* send, volatile unsigned int* gpio_datain_addr) {
+    // initial implementation is with polling, will need to replace with interrupts
+    struct timespec now;
+    time_t delta  = 0; // time delta in sec
+    while(delta<1) {
+        // loop until delta >= 1sec OR receive signal
+        clock_gettime(CLOCK_MONOTONIC, &now);
+        delta = now.tv_sec - (*send).tv_sec; // update time delta
+        if ((*gpio_datain_addr & GPIO_30)>>30==1) {
+            // signal received, log time and return
+            clock_gettime(CLOCK_MONOTONIC, receive);
+            return 1;
+        }
+    }
     return 0;
 }
