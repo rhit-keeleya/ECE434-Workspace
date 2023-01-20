@@ -13,3 +13,9 @@ Files for HW04
 9.	Mainline is the, well, mainline Linux Kernel - no forks, no additional patches.1.	Check the status of the M18 battery and verify it is not in over discharged (single indicator light flashing) or over heated state (indicator lights flashing in an alternating pattern). If it is over discharged, connect it to a charger and allow it to charge up to at least 25% (1/4 indicator bars on) before proceeding. If it is over heated, allow it to cool off and recheck the status.
 10.	Well, the interrupt handler is still executing from the previous interrupt. The external event won't interrupt until the previous handler is finished.
 11.	With Preempt RT, each interrupt handler just serves to wake a thread, that thread then executes the code that responds to the interrupt. Since all the interrupt handler does is wake a thread, it finishes and allows the external event to trigger an interrupt much sooner.
+
+# Cyclictest Results
+
+I ran the cyclic test with both an rt and non-rt kernel under two conditions: no load and loaded. The load was provided by running ./timeWaster.sh which contained a loop that printed out the number of times the loop had been executed. The resulting histograms can be found in no_load_cyclictest.png and loaded_cyclictest.png
+
+Looking at the results, it seems that the rt kernel has a bounded latency of 150us.
