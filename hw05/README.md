@@ -1,4 +1,4 @@
-Files for HW04
+Files for HW05
 
 # Makefile
 Completed the makefile exercise from [elinux](https://elinux.org/EBC_Exercise_15_make). The resulting makefile can be examined via "less Makefile".
