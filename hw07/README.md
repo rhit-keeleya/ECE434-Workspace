@@ -13,21 +13,13 @@ I noticed that my sensors appear to have the opposite pinout as that shown in th
 
 ```
      .-""""""-.
-
    .'          '.
-
   /   O      O   \
-
  :           `    :
-
  |                |
-
  :    _-----_    :
-
   \  '        '  /
-
    '.          .'
-
      '-......-'
 ```
 
