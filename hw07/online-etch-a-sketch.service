@@ -1,0 +1,14 @@
+[Unit]
+Description=Online Etch-a-sketch, hosted on port 8081
+Documentation=N/A...
+Wants=network.target dphys-swapfile.service
+After=multi-user.target
+
+[Service]
+Type=exec
+User=debian
+Group=debian
+ExecStart=/home/debian/ECE434-Workspace/hw04/online-etch-a-sketch.py
+
+[Install]
+WantedBy=multi-user.target

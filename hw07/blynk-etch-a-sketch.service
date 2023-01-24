@@ -1,0 +1,14 @@
+[Unit]
+Description=Blynk Etch-a-sketch
+Documentation=N/A...
+Wants=network.target dphys-swapfile.service
+After=multi-user.target
+
+[Service]
+Type=exec
+User=debian
+Group=debian
+ExecStart=/home/debian/ECE434-Workspace/hw07/blynk-etch-a-sketch.py
+
+[Install]
+WantedBy=multi-user.target
