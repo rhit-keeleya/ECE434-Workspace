@@ -11,15 +11,26 @@ Skipped as was optional...
 
 I noticed that my sensors appear to have the opposite pinout as that shown in the MAX31820 datasheet. When wired according to the datasheet, the sensors began to melt. This is generally not a good sign....
 
+```
      .-""""""-.
+
    .'          '.
+
   /   O      O   \
+
  :           `    :
+
  |                |
+
  :    _-----_    :
+
   \  '        '  /
+
    '.          .'
+
      '-......-'
+```
+
 
 After I got the wiring sorted out, I ran "./temp.sh", and got output from all three sensors on P9_12. Then I tweaked the device tree file to work on P9_14 (see BB-W1-P9.14-00A0.dts), compiled, and tested it again. 
 
