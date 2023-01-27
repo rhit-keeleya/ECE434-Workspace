@@ -8,3 +8,6 @@ Store pics/videos in tmp, serve them on webserver - send URL to owner on motion 
 Allow user to "save" media -> transfer out of tmp. 
 
 Periodically check storage used... if almost full, purge oldest tmp files to free up room?
+
+Debugging:
+Exported IFTTT key, does that env variable hang around after reboot?
