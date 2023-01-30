@@ -14,9 +14,9 @@ The pwm4 program uses P9_31, P9_29, P9_30, and P9_28 as output pins. This corres
 
 # Results
 
-|Test|Period (ns)|Notes|
+|Test|Period|Notes|
 |--|--|--|
-|Toggling P9_31 GPIO via pru0|80|Not a lot of jitter, seeing a std dev of 230ps. Not too surprising seeing as this is the only thing running on the pru.|
+|Toggling P9_31 GPIO via pru0|80ns|Not a lot of jitter, seeing a std dev of 230ps. Not too surprising seeing as this is the only thing running on the pru.|
 |PWM @ 50MHz on P9_31 via pru0 registers|20ns|Seeing some visual jitter here with a std dev of 44 ps.|
 |4-Channel PWM| 3us| Trying to do 4-channel pwm (and reading values from memory) is very slow compared to just 1, hardcoded, channel.|
 |4-Channel PWM, after updating delays| 11.6us| Very steady output, almost no visible jitter.|
