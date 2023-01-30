@@ -8,4 +8,5 @@ After getting the starter code (hello.pru0.c) up and running, I modified it to t
 # Results
 
 |Example|Test|Foobar|
+|--|--|--|
 |1|2|Noodle|
