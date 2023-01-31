@@ -14,6 +14,9 @@ Exported IFTTT key, does that env variable hang around after reboot?
 
 
 Use Apache2 webserver
+
     edit /etc/apache2/sites-available/footage.conf
+
     password file @ /etc/apache2/.htpasswd
+    
     serves the contents of /var/www/footage/
