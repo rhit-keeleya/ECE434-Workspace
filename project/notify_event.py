@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
 
-import requests
-import os
+import fire_notification
+import sheets
 
-os.getenv('IFTTT_KEY')
+# send notification
+key = fire_notification.get_key()
+success = fire_notification.motion_event(key)
 
-key = os.getenv('IFTTT_KEY')
-event = "motion_event_started"
-
-payload = {"value1":"hello", "value2":" from the", "value3":" beagle!"}
-url = "https://maker.ifttt.com/trigger/"+event+"/with/key/"+key
-
-r = requests.post(url, stream=True, data=payload)
-print(r.text)
+# log time/success status
+sheets.append_values([success])
