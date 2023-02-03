@@ -33,3 +33,17 @@ I modified the existing bb-code-server.service to launch the flask-based etch-a-
 # Blynk-based etch-a-sketch
 
 I modified my previous etch-a-sketch program to be controllable via app using blynk. It can be run using "./blynk-etch-a-sketch.py". I then added it as a service to systemd, as it was more user friendly to control than the flask version of the etch-a-sketch.
+
+# hw07 grading
+
+| Points      | Description |  | Feedback
+| ----------- | ----------- | - | -
+|  2/2  | Project Template | | *Intruder Cam*
+|  2/2  | | Names | 
+|  2/2  | | Executive Summary | 
+|  7/7  | 1-wire | 
+|  7/7  | systemd auto start |
+|  4    | Blynk - Etch-a-sketch - extra | 
+| 24/20 | **Total**
+
+*My comments are in italics. --may*
