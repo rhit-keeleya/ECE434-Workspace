@@ -10,7 +10,7 @@ Files for HW09
 |4|By M4, the camera system should be complete, including a nice UI. | 2/20/23| No|
 
 # Logging
-The script "one_wire_temp.py" will attempt to open hwmon0 - hwmon2 and log all three temperatures + the execution time of the read_sensors() function to google sheets. I added a cron job to fire the script every minute, and I'm planning on letting it run over night. The data gathered can be found [here](https://docs.google.com/spreadsheets/d/1qzS6IE8V2jU31syVeEl5ryPkoYs4Zy2su7EB0obKXb8/edit#gid=0), and looks something like this:
+The script "one_wire_temp.py" will attempt to open hwmon0 - hwmon2 and log all three temperatures + the execution time of the read_sensors() function to google sheets. I added a cron job to fire the script every minute, and I'm planning on letting it run over night. The data gathered can be found [here](https://docs.google.com/spreadsheets/d/1qzS6IE8V2jU31syVeEl5ryPkoYs4Zy2su7EB0obKXb8/edit#gid=0), and looks something like this: ![This is an image](logging.png)
 
 
 Sensor 3 is close to the Beagle, while 1 and 2 are at the other end of the breadboard - note the consistent temperature difference there!
