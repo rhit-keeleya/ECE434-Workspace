@@ -3,10 +3,12 @@
 import requests
 import os
 
-def motion_event(key):
+def motion_event(key, link):
     event = "motion_event_started"
+    
+    print(link)
 
-    payload = {"value1":"hello", "value2":" from the", "value3":" beagle!"}
+    payload = {"value1":link, "value2":" from the", "value3":" beagle!"}
     url = "https://maker.ifttt.com/trigger/"+event+"/with/key/"+key
 
     r = requests.post(url, stream=True, data=payload)
