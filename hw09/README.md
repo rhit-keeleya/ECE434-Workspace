@@ -14,3 +14,16 @@ The script "one_wire_temp.py" will attempt to open hwmon0 - hwmon2 and log all t
 
 
 Sensor 3 is close to the Beagle, while 1 and 2 are at the other end of the breadboard - note the consistent temperature difference there! Getting the temp from all three sensors takes about 3 seconds which feels a bit sluggish.
+
+*Dallas 1-wire is a bit slow.*
+# hw09 grading
+
+| Points      | Description | |
+| ----------- | ----------- |-|
+|  5/5 | Timeline | *Looks good.*
+|  3/3 | MAX31820 working
+| 12/12| Logging to Sheets
+| 20/20| **Total**
+
+*My comments are in italics. --may*
+
