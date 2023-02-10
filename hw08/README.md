@@ -22,3 +22,15 @@ The pwm4 program uses P9_31, P9_29, P9_30, and P9_28 as output pins. This corres
 |4-Channel PWM, after updating delays| 11.6us| Very steady output, almost no visible jitter.|
 |Input-Output @ 3MHz| 333ns | Bit of jitter on both input and output. Measured an offset of about 40 ns using onscreen cursors.|
 |Digital DAC| 163us | Made a pretty nice sine wave using a lowpass filter... got some ugly intermittent distortion, not sure why.|
+
+# hw08 grading
+
+| Points      | Description |
+| ----------- | ----------- |
+| 14/14 | PRU
+|  2/2 | Controlling the PWM Frequency - optional
+|  2/2 | Reading an Input at Regular Intervals - optional
+|  2/2 | Analog Wave Generator - optional
+| 20/20 | **Total**
+*Some pictures would be nice.*
+*My comments are in italics. --may*
