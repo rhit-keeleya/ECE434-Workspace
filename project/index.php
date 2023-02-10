@@ -440,7 +440,7 @@
 				<li class="item">
 
 					<?php if (!$item['isdir']) {	?>
-						<a href="<?php echo clickLink(actionName(getTitleHTML($title, $breadcrumbs))) ?>"><button class="button action"><?php echo actionName(getTitleHTML($title, $breadcrumbs)) ?></button></a>	
+						<a href="<?php echo clickLink(actionName(getTitleHTML($title, $breadcrumbs))) ?>"><button class="button action"><?php echo actionName(getTitleHTML($title, $breadcrumbs)) . " Event" ?></button></a>	
 					<?php } else { ?>
 							<span class = "action ">-</span>
 					<?php } ?>
