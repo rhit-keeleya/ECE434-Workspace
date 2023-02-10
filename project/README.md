@@ -21,3 +21,4 @@ Periodically check storage used... if almost full, purge oldest tmp files to fre
     Logging debugging stuff to google sheets
     Using nginx as webserver on port 8000
     Using ngrok service to make tunnel, and IFTTT to serve notifications w/ link on motion detection.
+    Have to have motion running as www-data, so can properly move directories around.
