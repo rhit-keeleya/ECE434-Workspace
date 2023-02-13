@@ -4,6 +4,16 @@ echo "Executing $1 on $2"
 
 OLD_PATH="$2/"
 
+# handle edge case where /tmp/ directory structure doesn't yet exist...
+# should only occur when testing.
+
+if [ ! -d ./temporary ]
+then
+    TEMP=/tmp/motion/footage
+    echo "Warning: ./temporary doesn't yet exist, creating directory $TEMP"
+    mkdir -p $TEMP
+fi
+
 if [ $1 = "Archive" ]
 then
     NEW_PATH=`echo $OLD_PATH | sed "s/temporary/permanent/"`

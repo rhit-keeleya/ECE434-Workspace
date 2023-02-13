@@ -218,6 +218,9 @@
 		$directory = $parameter[1];
 		exec("echo Event: " . $do . $directory . " detected... >> php.log 2>&1");
 		exec("./execute.sh " . $do . $directory . " >> php.log 2>&1");
+		// redirect user up a level
+		$redirect = buildLink(array('b' => exec("dirname " . $directory)));
+		header("Location: " . $redirect);
 	}
 ?>
 <!DOCTYPE HTML>
