@@ -205,6 +205,13 @@
 		}
 	}
 
+	function isEvent($cur_path) {
+		if(strpos($cur_path, "event") !== false){
+			return true;
+		}
+		return false;
+	}
+
 	function clickLink($buttonName) {
 		return buildLink(null) . "&" . "action=" . $buttonName . "+" . $_GET['b'];
 	}
@@ -385,6 +392,17 @@
 			background-image: url('<?php echo $_self ?>?i=file');
 		}
 
+		.button {
+			border-style: solid;
+			border-width: medium;
+			border-color: white;
+			background-color: #90EE90;
+			display: inline-block;
+			transition-duration: 0.4s;
+			cursor: pointer;
+			color: black;
+			width: 600px;
+		}
 		
 		ul li.item .button {
 			border-style: solid;
@@ -428,25 +446,27 @@
 		<ul id="header">
 			
 			<li>
-				<span class = "action ">Action</span>
+				<!-- <span class = "action ">Action</span> -->
 				<a href="<?php echo buildLink(array('s' => 'size', 'r' => (!$_sort_reverse && $_sort == 'size') ? '1' : null)) ?>" class="size <?php if ($_sort == 'size') echo $_sort_reverse ? 'desc' : 'asc' ?>"><span>Size</span></a>
 				<a href="<?php echo buildLink(array('s' => 'time', 'r' => (!$_sort_reverse && $_sort == 'time') ? '1' : null)) ?>" class="date <?php if ($_sort == 'time') echo $_sort_reverse ? 'desc' : 'asc' ?>"><span>Last modified</span></a>
 				<a href="<?php echo buildLink(array('s' =>  null , 'r' => (!$_sort_reverse && $_sort == 'name') ? '0' : null)) ?>" class="name <?php if ($_sort == 'name') echo $_sort_reverse ? 'desc' : 'asc' ?>"><span>Name</span></a>
 			</li>
 			
 		</ul>
-		<span><?php echo $_GET['c'] ?></span>
+		<?php if (isEvent(getTitleHTML($title, $breadcrumbs))) { ?>
+			<a href="<?php echo clickLink(actionName(getTitleHTML($title, $breadcrumbs))) ?>"><button class="button action"><?php echo actionName(getTitleHTML($title, $breadcrumbs)) . " Event" ?></button></a>
+		<?php } ?>
 		<ul>
 			
 			<?php foreach ($items as $item): ?>
 				
 				<li class="item">
 
-					<?php if (!$item['isdir']) {	?>
+					<!-- <?php if (!$item['isdir']) {	?>
 						<a href="<?php echo clickLink(actionName(getTitleHTML($title, $breadcrumbs))) ?>"><button class="button action"><?php echo actionName(getTitleHTML($title, $breadcrumbs)) . " Event" ?></button></a>	
 					<?php } else { ?>
 							<span class = "action ">-</span>
-					<?php } ?>
+					<?php } ?> -->
 				
 					<span class="size"><?php echo $item['isdir'] ? '-' : humanizeFilesize($item['size'], $sizeDecimals) ?></span>
 					
