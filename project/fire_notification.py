@@ -19,7 +19,7 @@ def motion_event(key, link):
 
 def get_key():
     # assumes that the key is stored in this file
-    file = open("/home/debian/ECE434-Workspace/project/IFTTT.key")
+    file = open("IFTTT.key")
     key = file.read()
     return key
 
@@ -27,4 +27,4 @@ def get_key():
 if __name__ == '__main__':
     #executed as script
     key = get_key()
-    print(motion_event(key))
+    print(motion_event(key, 'www.google.com'))
