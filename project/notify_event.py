@@ -7,6 +7,8 @@ import sys
 
 # build link
 folder = sys.argv[1]
+folder = "/?b="+folder.replace('/', '%2F')
+# /?b=permanent%2F2023-02-14%2Fevent01
 link = build_link.get_tunnel()+folder
 
 # send notification

@@ -45,7 +45,7 @@
 	$showFooter = true; // Display the "Powered by" footer
 	$openIndex = $browseDirectories && true; // Open index files present in the current directory if $browseDirectories is enabled
 	$browseDefault = null; // Start on a different "default" directory if $browseDirectories is enabled
-	$ignore = array('index.php'); // Names of files and folders to not list (case-sensitive)
+	$ignore = array('index.php', 'execute.sh', 'php.log'); // Names of files and folders to not list (case-sensitive)
 	
 	// =============================
 	// =============================
@@ -212,8 +212,8 @@
 		return false;
 	}
 
-	function clickLink($buttonName) {
-		return buildLink(null) . "&" . "action=" . $buttonName . "+" . $_GET['b'];
+	function clickLink($buttonName, $file) {
+		return buildLink(null) . "&" . "action=" . $buttonName . "+" . $_GET['b'] . "/" . $file;
 	}
 
 	// Executes script based on action
@@ -305,6 +305,7 @@
 			list-style-type: none;
 			overflow: hidden;
 			padding: 10px;
+			background-color: #121212;
 		}
 		
 		ul li:hover {
@@ -314,11 +315,13 @@
 		ul li .date {
 			text-align: center;
 			width: 120px;
+			background-color: #121212;
 		}
 		
 		ul li .size {
 			text-align: center;
 			width: 90px;
+			background-color: #121212;
 		}
 
 		ul li .action {
@@ -326,11 +329,11 @@
 			text-align: center;
 		}
 
-		ul li .date, ul li .size, ul li .action { 
+		li .date, li .size, li .action { 
 			float: right; 
 			font-size: 12px; 
-			display: block; 
-			color: #666666;
+			display: block;
+			background-color: #121212;
 		}
 
 		ul#header li {
@@ -343,11 +346,6 @@
 			background-color: transparent;
 		}
 		
-		ul#header li * {
-			color: #999999;
-			font-size: 11px;
-		}
-		
 		ul#header li a:hover {
 			color: #666666;
 		}
@@ -356,6 +354,7 @@
 			padding-right: 15px;
 			background-position: right center;
 			background-repeat: no-repeat;
+			background-color: #121212;
 		}
 		
 		ul#header li .asc span {
@@ -376,6 +375,7 @@
 		
 		ul li.item .name {
 			font-weight: bold;
+			background-color: #121212;
 		}
 		
 		ul li.item .directory, ul li.item .file {
@@ -392,19 +392,18 @@
 			background-image: url('<?php echo $_self ?>?i=file');
 		}
 
-		.button {
+		button.navigation {
 			border-style: solid;
 			border-width: medium;
 			border-color: white;
 			background-color: #90EE90;
-			display: inline-block;
 			transition-duration: 0.4s;
 			cursor: pointer;
 			color: black;
-			width: 600px;
+			width: 288px;
 		}
 		
-		ul li.item .button {
+		button.action {
 			border-style: solid;
 			border-width: medium;
 			border-color: white;
@@ -444,29 +443,29 @@
 		<h2><?php echo getTitleHTML($subtitle, $breadcrumbs) ?></h2>
 		
 		<ul id="header">
-			
 			<li>
-				<!-- <span class = "action ">Action</span> -->
-				<a href="<?php echo buildLink(array('s' => 'size', 'r' => (!$_sort_reverse && $_sort == 'size') ? '1' : null)) ?>" class="size <?php if ($_sort == 'size') echo $_sort_reverse ? 'desc' : 'asc' ?>"><span>Size</span></a>
-				<a href="<?php echo buildLink(array('s' => 'time', 'r' => (!$_sort_reverse && $_sort == 'time') ? '1' : null)) ?>" class="date <?php if ($_sort == 'time') echo $_sort_reverse ? 'desc' : 'asc' ?>"><span>Last modified</span></a>
-				<a href="<?php echo buildLink(array('s' =>  null , 'r' => (!$_sort_reverse && $_sort == 'name') ? '0' : null)) ?>" class="name <?php if ($_sort == 'name') echo $_sort_reverse ? 'desc' : 'asc' ?>"><span>Name</span></a>
+				<a href="<?php echo buildLink(array('b' => 'temporary')) ?>"><button class="navigation">Temporary Files</button></a>
+				<a href="<?php echo buildLink(array('b' => 'permanent')) ?>"><button class="navigation">Permanent Files</button></a>
+			</li>
+			<li>
+				<span class = "action">Action</span>
+				<a href="<?php echo buildLink(array('s' => 'size', 'r' => (!$_sort_reverse && $_sort == 'size') ? '1' : null)) ?>" class="size <?php if ($_sort == 'size') echo $_sort_reverse ? 'desc' : 'asc' ?>"><span class = "size">Size</span></a>
+				<a href="<?php echo buildLink(array('s' => 'time', 'r' => (!$_sort_reverse && $_sort == 'time') ? '1' : null)) ?>" class="date <?php if ($_sort == 'time') echo $_sort_reverse ? 'desc' : 'asc' ?>"><span class = "date">Last modified</span></a>
+				<a href="<?php echo buildLink(array('s' =>  null , 'r' => (!$_sort_reverse && $_sort == 'name') ? '0' : null)) ?>" class="name <?php if ($_sort == 'name') echo $_sort_reverse ? 'desc' : 'asc' ?>"><span class = "name">Name</span></a>
 			</li>
 			
 		</ul>
-		<?php if (isEvent(getTitleHTML($title, $breadcrumbs))) { ?>
-			<a href="<?php echo clickLink(actionName(getTitleHTML($title, $breadcrumbs))) ?>"><button class="button action"><?php echo actionName(getTitleHTML($title, $breadcrumbs)) . " Event" ?></button></a>
-		<?php } ?>
 		<ul>
 			
 			<?php foreach ($items as $item): ?>
 				
 				<li class="item">
 
-					<!-- <?php if (!$item['isdir']) {	?>
-						<a href="<?php echo clickLink(actionName(getTitleHTML($title, $breadcrumbs))) ?>"><button class="button action"><?php echo actionName(getTitleHTML($title, $breadcrumbs)) . " Event" ?></button></a>	
+					<?php if (!$item['isdir']) {	?>
+						<a href="<?php echo clickLink(actionName(getTitleHTML($title, $breadcrumbs)), $item['name']) ?>"><button class="action"><?php echo actionName(getTitleHTML($title, $breadcrumbs)) . " Event" ?></button></a>	
 					<?php } else { ?>
 							<span class = "action ">-</span>
-					<?php } ?> -->
+					<?php } ?>
 				
 					<span class="size"><?php echo $item['isdir'] ? '-' : humanizeFilesize($item['size'], $sizeDecimals) ?></span>
 					
