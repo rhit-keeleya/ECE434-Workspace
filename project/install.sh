@@ -3,8 +3,8 @@
 # Date    2/17/2023
 # Author  Abel Keeley
 # 
-# Install script for my Instruder Cam project. Details can be found here: [insert git link]. Will install necessary packages.
-# This project was completed on a BeagleBone Black - which comes preconfigured with software. As a result, this script may 
+# Install script for my Instruder Cam project. Details can be found here: https://github.com/rhit-keeleya/ECE434-Workspace/blob/master/project/README.md
+# Will install necessary packages. This project was completed on a BeagleBone Black - which comes preconfigured with software. As a result, this script may 
 # not be comprehensive, and some required packages may have been overlooked or excluded.
 
 sudo apt update
