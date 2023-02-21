@@ -1,0 +1,12 @@
+[Unit]
+Description=Motion detection video capture daemon
+Documentation=man:motion(1)
+
+[Service]
+Type=simple
+User=www-data
+UMask=0002
+ExecStart=/usr/bin/motion -c /home/debian/ECE434-Workspace/project/motion.conf
+
+[Install]
+WantedBy=multi-user.target
