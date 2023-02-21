@@ -19,7 +19,7 @@ def motion_event(key, link):
 
 def get_key():
     # assumes that the key is stored in this file
-    file = open("IFTTT.key")
+    file = open("/home/debian/ECE434-Workspace/project/IFTTT.key")
     key = file.read()
     return key
 
