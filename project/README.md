@@ -21,7 +21,7 @@ See motion.conf. You'll need to point the motion service to this config file on 
 # Start in daemon (background) mode and release terminal.
 daemon off
 ```
-I found that using daemon mode led to permission issues when configuring Motion to automatically launch as a service. Your mileage may very, but I would suggest leaving it off to begin with.
+I found that using daemon mode led to permission issues when configuring Motion to automatically launch as a service. Your mileage may vary, but I would suggest leaving it off to begin with.
 ```
 # Target directory for pictures, snapshots and movies
 target_dir /tmp/motion/footage
